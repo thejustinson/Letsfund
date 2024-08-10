@@ -1,0 +1,32 @@
+{
+    "type": "object",
+    "required": [
+      "title",
+      "tags",
+      "goal",
+      "description",
+      "endDate",
+      "image"
+    ],
+    "properties": {
+      "title": {
+        "type": "string"
+      },
+      "tags": {
+        "type": "array"
+      },
+      "goal": {
+        "type": "number"
+      },
+      "description": {
+        "type": "string"
+      },
+      "endDate": {
+        "type": "number"
+      },
+      "image": {
+        "type": "string"
+      }
+    }
+  }
+  
