@@ -44,17 +44,6 @@ const SideBar = () => {
               <span>Campaigns</span>
             </div>
           </Link>
-
-          <Link href="/analytics" passHref>
-            <div
-              className={`flex gap-3 py-3 px-3 rounded items-center cursor-pointer duration-200 ${
-                isActive("/analytics") ? "bg-purple-600" : "hover:bg-[#35373C]"
-              }`}
-            >
-              <RiBarChartGroupedFill className="w-5" />
-              <span>Analytics</span>
-            </div>
-          </Link>
         </div>
 
         <div>
@@ -68,17 +57,6 @@ const SideBar = () => {
             >
               <RiSettings3Fill className="w-5" />
               <span>Settings</span>
-            </div>
-          </Link>
-
-          <Link href="/account" passHref>
-            <div
-              className={`flex gap-3 py-3 px-3 rounded items-center cursor-pointer duration-200 ${
-                isActive("/account") ? "bg-purple-600" : "hover:bg-[#35373C]"
-              }`}
-            >
-              <RiAccountCircleFill className="w-5" />
-              <span>Account</span>
             </div>
           </Link>
         </div>

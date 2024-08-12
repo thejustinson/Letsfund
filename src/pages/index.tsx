@@ -1,10 +1,9 @@
-import SideBar from "@/components/SideBar"
+import LandingPage from "@/components/LandingPage"
 
 const index = () => {
   return (
-    <main className="flex">
-      <SideBar/>
-      hey
+    <main>
+      <LandingPage/>
     </main>
   )
 }

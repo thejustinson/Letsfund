@@ -29,11 +29,13 @@ export const start = async () => {
       console.log("Please install MetaMask!");
     }
 
-    const result = await db.cget(`projectgfm`);
+    const result = await db.cget(`pp_campaign`);
     console.log("result: ", result);
+    return(result)
 
     return {ethersProvider, ethersSigner, db}
   } catch (e:any) {
     return {error: new Error(e)}
   }
 };
+
