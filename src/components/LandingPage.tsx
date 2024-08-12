@@ -16,7 +16,7 @@ const LandingPage: React.FC = () => {
       <span className="mb-8">PledgePal</span>
 
       <h1 className="text-7xl font-bold mb-4 text-center">
-        Crowdfunding <br/> at it`&apos;`s easiest!
+        Crowdfunding <br/> at it&apos;s easiest!
       </h1>
 
       <p className="text text-neutral-500 text-center max-w-2xl mb-8">
