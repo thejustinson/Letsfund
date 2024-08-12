@@ -1,3 +1,5 @@
+"use client"
+
 import CampaignCardGrid from "@/components/CampaignCardGrid";
 import Campaigns from "@/components/Campaigns";
 import CreateCampaign from "@/components/CreateCampaign";
