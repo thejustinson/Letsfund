@@ -32,7 +32,7 @@ interface CampaignItem {
   };
 }
 
-const campaigns = () => {
+const useCampaigns = () => {
   // const db = new WeaveDB({ contractTxId: process.env.NEXT_PUBLIC_CONTRACT_TXID })
   // await db.init()
 
@@ -97,4 +97,4 @@ const campaigns = () => {
   );
 };
 
-export default campaigns;
+export default useCampaigns;
