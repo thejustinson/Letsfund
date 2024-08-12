@@ -1,7 +1,8 @@
-import WeaveDB from "weavedb-sdk";
 import detectEthereumProvider from "@metamask/detect-provider";
 import { ethers } from "ethers";
 import contractABI from "../../utils/PledgePal.json"; 
+
+const WeaveDB = require("weavedb-sdk")
 
 export const start = async () => {
   try {
