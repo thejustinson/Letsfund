@@ -3,7 +3,7 @@ import { RiCloseFill, RiImageAddLine } from "@remixicon/react";
 import { motion as m, AnimatePresence } from "framer-motion";
 import { start } from "@/pages/api/initWeaveDB";
 import { useValidateCampaignForm } from "@/Hooks/useValidateCampaignForm";
-import Image from "next/image";
+// import Image from "next/image";
 
 // interface createCampaignMessage {
 //   type: "success" | "error";
@@ -29,33 +29,33 @@ CreateCampaignOptions) => {
   const [goal, setGoal] = useState(0);
   const [description, setDescription] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [image, setImage] = useState<File | null>(null);
-  const [imagePreview, setImagePreview] = useState("");
+  // const [image, setImage] = useState<File | null>(null);
+  // const [imagePreview, setImagePreview] = useState("");
 
-  const imageRef = useRef<HTMLInputElement>(null);
+  // const imageRef = useRef<HTMLInputElement>(null);
 
   const { errors, validateForm } = useValidateCampaignForm();
 
-  const clearImage = () => {
-    if (imageRef.current) {
-      imageRef.current.value = "";
-    }
-    setImage(null);
-    setImagePreview("");
-  };
+  // const clearImage = () => {
+  //   if (imageRef.current) {
+  //     imageRef.current.value = "";
+  //   }
+  //   setImage(null);
+  //   setImagePreview("");
+  // };
 
-  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files ? e.target.files[0] : null;
-    if (file) {
-      setImage(file);
-      const url = URL.createObjectURL(file);
-      setImagePreview(url);
-    } else {
-      setImage(null);
-      setImagePreview("");
-      // setIpfsHash('');
-    }
-  };
+  // const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const file = e.target.files ? e.target.files[0] : null;
+  //   if (file) {
+  //     setImage(file);
+  //     const url = URL.createObjectURL(file);
+  //     setImagePreview(url);
+  //   } else {
+  //     setImage(null);
+  //     setImagePreview("");
+  //     // setIpfsHash('');
+  //   }
+  // };
 
   const handleCreateCampaign = async () => {
     const { isValid, errors: validationErrors } = validateForm(
@@ -63,7 +63,7 @@ CreateCampaignOptions) => {
       goal,
       description,
       endDate,
-      image
+      // image
     );
 
     if (isValid) {
@@ -74,47 +74,79 @@ CreateCampaignOptions) => {
         goal,
         description,
         endDate: endDateInSeconds,
-        image: "",
+        // image: "",
       };
 
-      console.log(data.image);
-
-      try {
-        // Upload to IPFS
-        // const added = await ipfs.add(file);
-        // setIpfsHash(added.path);
-        
-
-        if(image !== null){
-          const formData = new FormData()
-          formData.append("file", image, image?.name)
-
-          const request = await fetch("/api/files/route", {
-            method: "post",
-            body: formData,
-          });
-          console.log(request.json())
-        }else{
-          throw new Error("Put picture na")
-        }
-        
-
-        
-
-        
-        
-      } catch (error) {
-        console.error("Error uploading to IPFS:", error);
-      }
 
       // try {
-      //   const db = (await start()).db;
-      //   const res = await db.add(data, "pp_campaign");
-      //   console.log(res);
+      //   // Upload to IPFS
+      //   // const added = await ipfs.add(file);
+      //   // setIpfsHash(added.path);
+        
+
+      //   if (image !== null) {
+      //     const formData = new FormData();
+
+      //     console.log(image)
+      //     console.log(imagePreview)
+          
+      //     // Check if image is a File object
+      //     // if (image instanceof File) {
+      //     //   formData.append("file", imagePreview);
+            
+      //     // } else {
+      //     //   // If it's not a File object, we need to convert it
+      //     //   // This assumes 'image' is some kind of data URL or blob
+      //     //   fetch(image)
+      //     //     .then(res => res.blob())
+      //     //     .then(blob => {
+      //     //       const file = new File([blob], "image.jpg", { type: blob.type });
+      //     //       formData.append("file", imagePreview);
+      //     //       return fetch("/api/files/route", {
+      //     //         method: "POST",
+      //     //         body: formData,
+      //     //       });
+      //     //     })
+      //     //     .then(response => response.json())
+      //     //     .then(data => console.log(data))
+      //     //     .catch(error => console.error('Error:', error));
+      //     //   return; // Exit the function here as we're handling the fetch in the Promise chain
+      //     // }
+
+          
+        
+      //     try {
+      //       formData.append("file", imagePreview);
+      //       console.log(formData.get("file"))
+      //       const request = await fetch("/api/files/route", {
+      //         method: "POST",
+      //         body: formData,
+      //       });
+      //       console.log(await request.json());
+      //     } catch (error) {
+      //       console.error('Error:', error);
+      //     }
+      //   } else {
+      //     throw new Error("Please select an image");
+      //   }
+        
+
+        
+
+        
+        
       // } catch (error) {
-      //   console.error("Error adding campaign:", error);
-      //   // Handle error here (e.g., show an error message to the user)
+      //   console.error("Error uploading to IPFS:", error);
       // }
+
+      try {
+        const db = (await start()).db;
+        const res = await db.add(data, "pp_campaign");
+        console.log(res);
+      } catch (error) {
+        console.error("Error adding campaign:", error);
+        // Handle error here (e.g., show an error message to the user)
+      }
     } else {
       console.log(errors);
 
@@ -167,7 +199,7 @@ CreateCampaignOptions) => {
                 setGoal(0);
                 setDescription("");
                 setEndDate("");
-                setImage(null);
+                // setImage(null);
               }}
             >
               <RiCloseFill />
@@ -251,7 +283,7 @@ CreateCampaignOptions) => {
                   </span>
                 </div>
               </div>
-              <div className="w-[300px] shrink-0 border-l border-l-[#2B2D31] ml-5 pl-5 flex justify-center items-center relative">
+              {/* <div className="w-[300px] shrink-0 border-l border-l-[#2B2D31] ml-5 pl-5 flex justify-center items-center relative">
                 <div className="flex items-center">
                   <div
                     className={`${
@@ -304,7 +336,7 @@ CreateCampaignOptions) => {
                     onChange={handleImageChange}
                   />
                 </div>
-              </div>
+              </div> */}
             </div>
             <button
               className="bg-purple-600 mt-5 w-full py-3 font-semibold rounded duration-200 hover:bg-purple-700 active:scale-90"

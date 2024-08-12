@@ -42,19 +42,33 @@ const campaigns = () => {
 
   // const [createCampaignMessage, setCreateCampaignMessage] = useState<CampaignMessage | null>(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await start();
-        setCampaignData(result);
-      } catch (error) {
-        console.error("Error fetching campaign data:", error);
-        // Handle the error appropriately
-      }
-    };
+  const fetchData = async () => {
+    try {
+      const result = (await start()).db;
+      const d = await result.cget("pp_campaign")
+      setCampaignData(d);
+      console.log(d)
+    } catch (error) {
+      console.error("Error fetching campaign data:", error);
+      // Handle the error appropriately
+    }
+  }
 
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const result = (await start()).db;
+  //       const d = await result.cget("pp_campaign")
+  //       setCampaignData(d);
+  //       console.log(d)
+  //     } catch (error) {
+  //       console.error("Error fetching campaign data:", error);
+  //       // Handle the error appropriately
+  //     }
+  //   };
+
+  //   // fetchData();
+  // }, []);
 
   return (
     <main className="flex relative w-full">
@@ -62,6 +76,7 @@ const campaigns = () => {
       <div className="flex flex-col w-full max-h-screen overflow-x-hidden overflow-y-scroll">
         <Campaigns
           setCreateCampaignModalIsActive={setCreateCampaignModalIsActive}
+          fetchData={fetchData}
         />
         <CampaignCardGrid campaignData={campaignData}/>
       </div>

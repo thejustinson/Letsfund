@@ -5,7 +5,7 @@ interface FormErrors {
   goal?: string;
   description?: string;
   endDate?: string;
-  image?: string;
+  // image?: string;
 }
 
 export const useValidateCampaignForm = () => {
@@ -16,7 +16,7 @@ export const useValidateCampaignForm = () => {
     goal: number, 
     description: string, 
     endDate: string, 
-    image: File | null
+    // image: File | null
   ) => {
     const newErrors: FormErrors = {};
 
@@ -51,11 +51,11 @@ export const useValidateCampaignForm = () => {
     }
 
     // Validate image
-    if (!image) {
-      newErrors.image = "Image is required";
-    } else if (image.size > 2 * 1024 * 1024) { // 2MB limit
-      newErrors.image = "Image size must not exceed 2MB";
-    }
+    // if (!image) {
+    //   newErrors.image = "Image is required";
+    // } else if (image.size > 2 * 1024 * 1024) { // 2MB limit
+    //   newErrors.image = "Image size must not exceed 2MB";
+    // }
 
     setErrors(newErrors);
     return { isValid: Object.keys(newErrors).length === 0, errors: newErrors };

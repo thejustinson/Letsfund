@@ -1,6 +1,7 @@
 import WeaveDB from "weavedb-sdk";
 import detectEthereumProvider from "@metamask/detect-provider";
 import { ethers } from "ethers";
+import contractABI from "../../utils/PledgePal.json"; 
 
 export const start = async () => {
   try {
@@ -31,7 +32,6 @@ export const start = async () => {
 
     const result = await db.cget(`pp_campaign`);
     console.log("result: ", result);
-    return(result)
 
     return {ethersProvider, ethersSigner, db}
   } catch (e:any) {
