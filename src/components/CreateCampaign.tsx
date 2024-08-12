@@ -74,7 +74,7 @@ CreateCampaignOptions) => {
         goal,
         description,
         endDate: endDateInSeconds,
-        image: "wewilluseipfs.jpg",
+        image: "",
       };
 
       console.log(data.image);
@@ -83,11 +83,26 @@ CreateCampaignOptions) => {
         // Upload to IPFS
         // const added = await ipfs.add(file);
         // setIpfsHash(added.path);
+        
 
-        const xhr = new XMLHttpRequest()
-        xhr.setRequestHeader("Authorization", "Basic " + btoa(<API_KEY> + ":" + <API_KEY_SECRET>));
+        if(image !== null){
+          const formData = new FormData()
+          formData.append("file", image, image?.name)
 
+          const request = await fetch("/api/files/route", {
+            method: "post",
+            body: formData,
+          });
+          console.log(request.json())
+        }else{
+          throw new Error("Put picture na")
+        }
+        
 
+        
+
+        
+        
       } catch (error) {
         console.error("Error uploading to IPFS:", error);
       }
